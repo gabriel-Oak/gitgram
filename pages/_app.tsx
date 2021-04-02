@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import Head from 'next/head';
 import { FC } from 'react';
