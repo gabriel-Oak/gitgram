@@ -5,13 +5,15 @@ import { FC } from 'react';
 const cookiePrefix = 'gitgram/token';
 
 const withGuard = (Component: FC<any>) => () => {
+  let token: string | undefined;
+
   if (process.browser) {
     const router = useRouter();
-    const token = Cookies.get(cookiePrefix);
+    token = Cookies.get(cookiePrefix);
     if (!token) router.replace('/auth');
   }
 
-  return <Component />;
+  return token ? <Component /> : <></>;
 }
 
 export default withGuard;
