@@ -1,15 +1,15 @@
 import React from 'react';
-import LoginCard from '../../src/components/auth/loginCard';
+import LoginCard from '../../src/components/auth/login-card';
 
 interface Props {
   clientId: string;
 }
 
-const Auth: React.FC<Props> = ({ clientId }) => (
+const AuthPage: React.FC<Props> = ({ clientId }) => (
   <LoginCard clientId={clientId} />
 );
 
-export default Auth;
+export default AuthPage;
 
 export const getStaticProps = () => {
   return {
