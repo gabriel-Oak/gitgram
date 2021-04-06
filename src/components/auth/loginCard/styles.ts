@@ -7,6 +7,11 @@ const useStyles = makeStyles({
     left: '50%',
     transform: 'translate(-50%, -50%)'
   },
+  container: {
+    textAlign: 'center',
+    width: '100vw',
+    maxWidth: 344,
+  }
 });
 
 export default useStyles;
