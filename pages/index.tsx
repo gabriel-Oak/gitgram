@@ -1,11 +1,21 @@
-export default function HomePage() {
+import { Box } from "@material-ui/core";
+import { FC } from "react";
+import withGuard from "../src/utils/withGuard";
+
+const HomePage: FC = () => {
   return (
-    <main>ola</main>
+    <main>
+      <Box color="#fff">
+        ola pessoa
+      </Box>
+    </main>
   );
 }
 
+export default withGuard(HomePage);
+
 export async function getStaticProps() {
   return {
-    props: { },
+    props: {},
   };
 }

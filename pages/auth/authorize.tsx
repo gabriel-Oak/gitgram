@@ -4,6 +4,9 @@ import { getUser } from '../../src/components/auth/actions';
 import LoginCard from '../../src/components/auth/login-card';
 import { StoreState } from '../../src/store/types';
 import { useRouter } from 'next/router'
+import Cookies from 'js-cookie';
+
+const cookiePrefix = 'gitgram/token';
 
 interface Props {
   clientId: string;
@@ -14,9 +17,12 @@ const AuthorizePage: React.FC<Props> = ({ clientId }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { code } = router.query;
-  
-  useEffect(() => {    
-    if (code && !loading) dispatch(getUser(String(code)));
+
+  const token = Cookies.get(cookiePrefix);
+  if (token) router.replace('/');  
+
+  useEffect(() => {
+    if (code && !loading && !token) dispatch(getUser(String(code)));
   }, [code]);
 
   return (

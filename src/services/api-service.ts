@@ -21,12 +21,11 @@ const apiService = axios.create({
       //   config.headers.Authorization = `${REACT_APP_TOKEN}`;
       //   config.headers['Content-Type'] = 'application/json';
       // }
-  console.log(window, 'window apiservice');
   return config;
 });
 
 apiService.interceptors.response.use(
-  (response) => response,
+  (response) => response.data,
   (e) => {
     const error = e || {};
     const { response = {} } = error;
