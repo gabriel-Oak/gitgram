@@ -1,28 +1,30 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../../src/components/auth/actions';
+import { connect } from 'react-redux';
+import { getTokenAction } from '../../src/components/auth/actions';
 import LoginCard from '../../src/components/auth/login-card';
 import { StoreState } from '../../src/store/types';
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie';
+import { ProviderContext, useSnackbar } from 'notistack';
 
 const cookiePrefix = 'gitgram/token';
 
 interface Props {
   clientId: string;
+  getUser: (code: string, snack: ProviderContext) => Promise<void>;
+  loading: boolean;
 }
 
-const AuthorizePage: React.FC<Props> = ({ clientId }) => {
-  const loading = useSelector((state: StoreState) => state.auth.loading);
-  const dispatch = useDispatch();
+const AuthorizePage: React.FC<Props> = ({ clientId, loading, getUser }) => {
+  const snack = useSnackbar();
   const router = useRouter();
   const { code } = router.query;
-
   const token = Cookies.get(cookiePrefix);
+  
   if (token) router.replace('/');  
 
   useEffect(() => {
-    if (code && !loading && !token) dispatch(getUser(String(code)));
+    if (code && !loading && !token) getUser(String(code), snack);
   }, [code]);
 
   return (
@@ -33,7 +35,11 @@ const AuthorizePage: React.FC<Props> = ({ clientId }) => {
   );
 }
 
-export default AuthorizePage;
+const mapState = (state: StoreState) => state.auth; 
+
+export default connect(mapState, {
+  getUser: getTokenAction,
+})(AuthorizePage);
 
 export const getStaticProps = () => {
   return {

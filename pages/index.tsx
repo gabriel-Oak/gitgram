@@ -1,13 +1,11 @@
-import { Box } from "@material-ui/core";
 import { FC } from "react";
+import TopBar from "../src/components/shared/top-bar";
 import withGuard from "../src/utils/withGuard";
 
 const HomePage: FC = () => {
   return (
     <main>
-      <Box color="#fff">
-        ola pessoa
-      </Box>
+      <TopBar />
     </main>
   );
 }

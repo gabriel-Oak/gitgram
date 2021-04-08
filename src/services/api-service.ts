@@ -1,6 +1,8 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 // import * as Sentry from '@sentry/browser';
 
+const cookiePrefix = 'gitgram/token';
 const { NEXT_PUBLIC_CACHE_API: baseURL } = process.env;
 
 const apiService = axios.create({
@@ -21,6 +23,11 @@ const apiService = axios.create({
       //   config.headers.Authorization = `${REACT_APP_TOKEN}`;
       //   config.headers['Content-Type'] = 'application/json';
       // }
+  if (process.browser) {
+    const token = Cookies.get(cookiePrefix);
+    if (token) config.headers.Authorization = token;
+  }
+
   return config;
 });
 

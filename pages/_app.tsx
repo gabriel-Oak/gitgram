@@ -1,5 +1,6 @@
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import Head from 'next/head';
+import { SnackbarProvider } from 'notistack';
 import { FC } from 'react';
 import { Provider } from 'react-redux';
 import { useStore } from '../src/store';
@@ -31,7 +32,9 @@ const App: FC<Props> = ({ Component, pageProps }) => {
         <CssBaseline />
 
         <Provider store={store}>
-          <Component {...pageProps} />
+          <SnackbarProvider maxSnack={3}>
+            <Component {...pageProps} />
+          </SnackbarProvider>
         </Provider>
       </ThemeProvider>
     </>

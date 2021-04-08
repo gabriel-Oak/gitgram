@@ -24,7 +24,7 @@ export const initializeStore = (preloadedState: StoreState) => {
     store = undefined
   }
 
-  if (typeof window === 'undefined') return _store
+  if (process.browser) return _store
   if (!store) store = _store
 
   return _store

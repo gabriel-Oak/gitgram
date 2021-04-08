@@ -14,3 +14,5 @@ export type StoreState = CombinedState<{
 export type StoreData = Store<StoreState, ActionType>;
 
 export interface StoreType extends StoreData { }
+
+export type GetState = () => StoreState;
