@@ -26,6 +26,8 @@ const App: FC<Props> = ({ Component, pageProps }) => {
           rel="stylesheet" 
           href="https://fonts.googleapis.com/icon?family=Material+Icons" 
         />
+
+        <title>Gitgram</title>
       </Head>
 
       <ThemeProvider theme={theme}>

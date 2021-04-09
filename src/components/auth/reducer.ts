@@ -32,6 +32,10 @@ const auth = handleActions({
     ...state,
     user: payload.user,
   }),
+  [authTypes.LOG_OUT]: (state) => ({
+    ...state,
+    user: null,
+  }),
 }, INITIAL_STATE);
 
 export default auth;

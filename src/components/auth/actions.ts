@@ -45,3 +45,8 @@ export const getUserAction = (snack: ProviderContext) => async (dispatch: Dispat
     snack.enqueueSnackbar(e.message || e, { variant: 'error' });
   };
 }
+
+export const logOutAction = () => {
+  Cookies.remove(cookiePrefix);
+  return { type: authTypes.LOG_OUT };
+} 
